@@ -1,0 +1,111 @@
+.orders-table {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.orders-table {
+  color: #a7b1bc;
+  font-weight: 500;
+  line-height: 16px;
+  font: 12px;
+  width: 100%;
+}
+
+.orders-table-header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  font-size: 14px;
+}
+
+.orders-table-body {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  font-size: 14px;
+}
+
+.orders-table-body > div {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.orders-table-body > div > p:first-of-type {
+  color: #ff6838;
+  background-color: transparent;
+}
+
+.orders-table-body > div > p {
+  color: white;
+}
+
+.orders-order-price {
+  height: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  color: white;
+  font-weight: 500;
+}
+
+.orders-order-price > p:first-of-type {
+  color: #25c26e;
+}
+
+.orders-action-btns {
+  display: flex;
+  justify-content: space-between;
+}
+
+.desktop__main-content {
+  height: 100vh;
+}
+
+.grid__area {
+  height: 560px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding: 0 16px;
+}
+
+.chart__area {
+  width: 909px;
+  height: 100%;
+  background-color: red;
+}
+
+.order__area {
+  width: 245px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+}
+
+.order__area-orders {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.order__area-orders-left {
+  width: 50%;
+  display: flex;
+  gap: 10px;
+}
+
+.shop__area {
+  width: 255px;
+  height: 100%;
+  background-color: #ff6838;
+}
