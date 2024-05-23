@@ -8,10 +8,17 @@ import rgb from "assets/rgb.svg";
 import ggg from "assets/ggg.svg";
 import rgg from "assets/rgg.svg";
 import dropdown from "assets/dropdown.svg";
+import info from "assets/info.svg";
+import { useAppContext } from "contexts";
 
 export default function MainContent() {
   const [activeTab, setActiveTab] = useState(1);
   const [mobileView, setMobileView] = useState(window.innerWidth <= 900);
+  const [price, setPrice] = useState(0);
+  const [amount, setAmount] = useState(0);
+  const [total, setTotal] = useState(0.0);
+
+  const { setIsModalOpen, modalType, setModalType } = useAppContext();
 
   const handleSwitchTab = (id) => {
     setActiveTab(id);
@@ -28,6 +35,11 @@ export default function MainContent() {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
+
+  useEffect(() => {
+    const calculatedTotal = parseFloat(price) * parseFloat(amount) || 0;
+    setTotal(calculatedTotal.toFixed(2));
+  }, [price, amount]);
 
   return (
     <>
@@ -106,7 +118,7 @@ export default function MainContent() {
                   <img src={dropdown} alt="" />
                 </div>
               </div>
-              <div className="orders-table-header">
+              <div className="order__area-table-header">
                 <div>
                   <p className="">Price</p>
                   <span>(USDT)</span>
@@ -120,7 +132,7 @@ export default function MainContent() {
                 </div>
               </div>
 
-              <div className="orders-table-body">
+              <div className="order__area-table-body">
                 <div>
                   <p>36920.12</p>
                   <p>0.758965</p>
@@ -179,26 +191,107 @@ export default function MainContent() {
                   <p>28,020.98</p>
                 </div>
               </div>
-              <div className="orders-action-btns">
-                {/* <SellButton
-                  onClick={() => {
-                    setIsModalOpen(true);
-                    setModalType("buy");
-                  }}
-                  color={"#25c26e"}
-                  children={"Buy"}
+            </div>
+            <div className="shop__area">
+              <div className="shop__area-content-top">
+                <button className={modalType === "buy" && "active"}>buy</button>
+                <button
+                  className={modalType === "sell" && "sell_active"}
+                  onClick={() => setModalType("sell")}
+                >
+                  sell
+                </button>
+              </div>
+              <div className="shop__area-content-middle">
+                <button className="active">Limit</button>
+                <button>Market</button>
+                <button>Stop-Limit</button>
+              </div>
+              <div className="form__control">
+                <p>
+                  <span>Limit price</span>
+                  <span>
+                    <img src={info} alt="" />
+                  </span>
+                </p>
+                <input
+                  type="text"
+                  placeholder="0.00USD"
+                  onChange={(e) => setPrice(e.target.value)}
                 />
-                <SellButton
-                  onClick={() => {
-                    setIsModalOpen(true);
-                    setModalType("sell");
-                  }}
-                  color={"#ff554a"}
-                  children={"Sell"}
-                /> */}
+              </div>
+              <div className="form__control">
+                <p>
+                  <span>Amount</span>
+                  <span>
+                    <img src={info} alt="" />
+                  </span>
+                </p>
+                <input
+                  type="text"
+                  placeholder="0.00USD"
+                  onChange={(e) => setAmount(e.target.value)}
+                />
+              </div>
+              <div className="form__control">
+                <p>
+                  <span>Type</span>
+                  <span>
+                    <img src={info} alt="" />
+                  </span>
+                </p>
+                <select name="" id="">
+                  <option value="1">Good till cancelled</option>
+                  <option value="1">Fill or kill</option>
+                  <option value="1">Good till date</option>
+                </select>
+              </div>
+              <div className="form__control checkbox">
+                <p className="">
+                  <input type="checkbox" id="checkbox" />
+                  <label htmlFor="checkbox">Post Only</label>
+                </p>
+              </div>
+              <div className="form__control checkbox">
+                <p>
+                  <span>Total</span>
+                </p>
+                <input
+                  type="text"
+                  placeholder="0.00USD"
+                  readOnly
+                  value={total}
+                />
+              </div>
+              <div className="modal__btn">
+                <button className="" onClick={() => setIsModalOpen(false)}>
+                  Buy BTC
+                </button>
+              </div>
+              <div className="modal__extras">
+                <div className="modal__extras-left">
+                  <p>Total account value</p>
+                  <span>0.00</span>
+                </div>
+                <div className="modal__extras-right">
+                  <span>NGN</span>
+                  <img src={dropdown} alt="" />
+                </div>
+              </div>
+              <div className="modal__extras">
+                <div className="modal__extras-left">
+                  <p>Open Orders</p>
+                  <span>0.00</span>
+                </div>
+                <div className="modal__extras-right">
+                  <p>Available</p>
+                  <span>0.00</span>
+                </div>
+              </div>
+              <div className="deposit_btn">
+                <button>Deposit</button>
               </div>
             </div>
-            <div className="shop__area"></div>
           </div>
           <OrderSection />
         </section>

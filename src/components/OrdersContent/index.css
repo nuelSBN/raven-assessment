@@ -65,3 +65,9 @@
   text-align: center;
   line-height: 24px;
 }
+
+@media (min-width: 992px) {
+  .orders_section {
+    width: 1154px;
+  }
+}
