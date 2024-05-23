@@ -10,6 +10,7 @@ import rgg from "assets/rgg.svg";
 import dropdown from "assets/dropdown.svg";
 import info from "assets/info.svg";
 import { useAppContext } from "contexts";
+import CandlestickComboChart from "./partials/CandleStickChart";
 
 export default function MainContent() {
   const [activeTab, setActiveTab] = useState(1);
@@ -80,14 +81,15 @@ export default function MainContent() {
         <section className="desktop__main-content">
           <div className="grid__area">
             <div className="chart__area">
-              <h1>chart area</h1>
+              {/* <h1>chart area</h1> */}
+              <CandlestickComboChart />
             </div>
             <div className="order__area">
               <div className="order__area-tab">
                 <div
                   className={`${
                     activeTab === 2 && "active"
-                  }  main__content-tab-links orderbook`}
+                  }  order__area-tab-links orderbook`}
                   onClick={() => handleSwitchTab(2)}
                 >
                   Orderbook
@@ -95,7 +97,7 @@ export default function MainContent() {
                 <div
                   className={`${
                     activeTab === 3 && "active"
-                  }  main__content-tab-links recent-trade`}
+                  }  order__area-tab-links recent-trade`}
                   onClick={() => handleSwitchTab(3)}
                 >
                   Recent trades
@@ -194,7 +196,12 @@ export default function MainContent() {
             </div>
             <div className="shop__area">
               <div className="shop__area-content-top">
-                <button className={modalType === "buy" && "active"}>buy</button>
+                <button
+                  className={modalType === "buy" && "active"}
+                  onClick={() => setModalType("buy")}
+                >
+                  buy
+                </button>
                 <button
                   className={modalType === "sell" && "sell_active"}
                   onClick={() => setModalType("sell")}
